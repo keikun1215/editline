@@ -1,4 +1,4 @@
-exports.loadnum = function load(file, line) {
+exports.loadnum = function loadnum(file, line) {
   const fs = require('fs')
   let text = fs.readFileSync(file, 'utf-8');
   let txt = text.slice().split('\n')
@@ -19,7 +19,7 @@ exports.loadnum = function load(file, line) {
     return res
   }
 }
-exports.loadstr = function load(file, line) {
+exports.loadstr = function loadstr(file, line) {
   const fs = require('fs')
   let text = fs.readFileSync(file, 'utf-8');
   let txt = text.slice().split('\n')
