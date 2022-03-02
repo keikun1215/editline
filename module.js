@@ -1,4 +1,8 @@
-exports.loadnum = function loadnum(file, line) {
+function Error(message) {
+    throw new Error(message)
+}
+
+exports.loadnum = function load(file, line) {
   const fs = require('fs')
   let text = fs.readFileSync(file, 'utf-8');
   let txt = text.slice().split('\n')
@@ -10,16 +14,16 @@ exports.loadnum = function loadnum(file, line) {
     } else if (b == 1) {
       return true
     } else {
-      throw new Error('The value you entered is invalid. Usage: b:<1 | 0>')
+      Error('The value you entered is invalid. Usage: b:<1 | 0>')
     }
     if (res == 1)
   } else if (isNaN(res) == true) {
-    throw new Error('Any input other than numbers is invalid.')
+      Error('Any input other than numbers is invalid.')
   } else {
     return res
   }
 }
-exports.loadstr = function loadstr(file, line) {
+exports.loadstr = function load(file, line) {
   const fs = require('fs')
   let text = fs.readFileSync(file, 'utf-8');
   let txt = text.slice().split('\n')
@@ -75,18 +79,30 @@ exports.math = function math(file, line, mathvalue) {
       if (mathvalue.startsWith('+')) {
         const result = parseInt(lineString) + parseInt(mathvalue.replace("+", ""))
         ws.write(result + '\n')
+        if(isNaN(lineString)){
+            Error('Any input other than numbers is invalid.')
+        }
         count++
       } else if (mathvalue.startsWith('-')) {
         const result = parseInt(lineString) - parseInt(mathvalue.replace("-", ""))
         ws.write(result + '\n')
+        if(isNaN(lineString)){
+            Error('Any input other than numbers is invalid.')
+        }
         count++
       } else if (mathvalue.startsWith('/')) {
         const result = parseInt(lineString) / parseInt(mathvalue.replace("/", ""))
         ws.write(result + '\n')
+        if(isNaN(lineString)){
+            Error('Any input other than numbers is invalid.')
+        }
         count++
       } else if (mathvalue.startsWith('*')) {
         const result = parseInt(lineString) * parseInt(mathvalue.replace("*", ""))
         ws.write(result + '\n')
+        if(isNaN(lineString)){
+            Error('Any input other than numbers is invalid.')
+        }
         count++
       }
     } else {
